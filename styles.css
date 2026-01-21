@@ -1,0 +1,831 @@
+/* CSS Reset & Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #2d5a27;
+    --primary-dark: #1e3d1a;
+    --secondary: #c9a227;
+    --secondary-light: #e8c547;
+    --danger: #dc3545;
+    --success: #28a745;
+    --dark: #1a1a2e;
+    --darker: #0f0f1a;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --track-brown: #8B4513;
+    --track-light: #D2691E;
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+}
+
+html {
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+    color: var(--light);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* App Container */
+.app-container {
+    max-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Racing Sans One', cursive;
+    font-size: 1.4rem;
+    color: var(--secondary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.balance-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.balance-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+}
+
+.balance-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.balance-amount.positive {
+    animation: pulse-green 0.5s ease;
+}
+
+.balance-amount.negative {
+    animation: pulse-red 0.5s ease;
+}
+
+@keyframes pulse-green {
+    0%, 100% { color: var(--secondary); }
+    50% { color: var(--success); transform: scale(1.1); }
+}
+
+@keyframes pulse-red {
+    0%, 100% { color: var(--secondary); }
+    50% { color: var(--danger); transform: scale(1.1); }
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Race Section */
+.race-section {
+    background: linear-gradient(145deg, rgba(45, 90, 39, 0.3) 0%, rgba(30, 61, 26, 0.5) 100%);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.race-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.race-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.race-distance {
+    font-size: 0.8rem;
+    color: var(--gray);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+/* Track */
+.track-container {
+    background: var(--track-brown);
+    border-radius: 8px;
+    padding: 0.5rem;
+    overflow: hidden;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.track {
+    position: relative;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--track-brown) 0px,
+        var(--track-light) 2px,
+        var(--track-brown) 4px
+    );
+    border-radius: 4px;
+    min-height: 200px;
+}
+
+.finish-line {
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background: repeating-linear-gradient(
+        0deg,
+        #fff 0px,
+        #fff 8px,
+        #000 8px,
+        #000 16px
+    );
+    z-index: 5;
+}
+
+.lanes {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+}
+
+.lane {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 0.5rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.lane:last-child {
+    border-bottom: none;
+}
+
+.lane-number {
+    position: absolute;
+    left: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.horse-icon {
+    font-size: 1.5rem;
+    position: absolute;
+    left: 20px;
+    transition: left 0.1s linear;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+.horse-icon.racing {
+    animation: gallop 0.2s infinite;
+}
+
+@keyframes gallop {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.race-status {
+    text-align: center;
+    padding: 0.75rem;
+    font-weight: 600;
+    color: var(--secondary);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.race-status.racing {
+    color: var(--success);
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Horses Section */
+.horses-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.horses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horse-card {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.horse-card:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.horse-number {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 50%;
+    font-size: 0.9rem;
+}
+
+.horse-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.horse-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.horse-jockey {
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+.horse-odds {
+    text-align: right;
+}
+
+.odds-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--secondary);
+}
+
+.odds-label {
+    font-size: 0.65rem;
+    color: var(--gray);
+    text-transform: uppercase;
+}
+
+/* Betting Section */
+.betting-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+/* Bet Types */
+.bet-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.bet-type-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: var(--light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bet-type-btn:active {
+    transform: scale(0.98);
+}
+
+.bet-type-btn.active {
+    background: rgba(45, 90, 39, 0.5);
+    border-color: var(--secondary);
+}
+
+.bet-type-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.bet-type-desc {
+    font-size: 0.7rem;
+    color: var(--gray);
+}
+
+/* Horse Selection */
+.horse-selection {
+    margin-bottom: 1rem;
+}
+
+.selection-label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray);
+}
+
+.horse-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.horse-select-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #fff;
+}
+
+.horse-select-btn:active {
+    transform: scale(0.95);
+}
+
+.horse-select-btn.selected {
+    border-color: var(--secondary);
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+}
+
+.horse-select-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Bet Amount */
+.bet-amount-section {
+    margin-bottom: 1rem;
+}
+
+.amount-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.preset-btn {
+    flex: 1;
+    min-width: 60px;
+    padding: 0.6rem 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 6px;
+    color: var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:active {
+    background: var(--primary);
+    transform: scale(0.98);
+}
+
+.preset-btn.selected {
+    background: var(--primary);
+    border: 2px solid var(--secondary);
+}
+
+.custom-amount input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--light);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.custom-amount input:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.custom-amount input::placeholder {
+    color: var(--gray);
+}
+
+/* Payout Display */
+.payout-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(201, 162, 39, 0.1);
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.payout-label {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.payout-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+/* Active Bets */
+.active-bets {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.active-bets h4 {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.bets-list {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.no-bets {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+    padding: 1rem;
+}
+
+.bet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.bet-item:last-child {
+    margin-bottom: 0;
+}
+
+.bet-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.bet-type-label {
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.bet-horses {
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+.bet-amount-display {
+    font-weight: 600;
+}
+
+.bet-remove {
+    background: var(--danger);
+    border: none;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.total-wagered {
+    text-align: right;
+    font-size: 0.85rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0.5rem;
+}
+
+.total-wagered span {
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+/* Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(145deg, var(--secondary) 0%, var(--secondary-light) 100%);
+    color: var(--dark);
+    box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-clear {
+    background: transparent;
+    color: var(--gray);
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, var(--dark) 0%, var(--darker) 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-title {
+    font-family: 'Racing Sans One', cursive;
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Results Podium */
+.results-podium {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.podium-place {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.place-medal {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: 50%;
+}
+
+.place-1 .place-medal { background: linear-gradient(145deg, var(--gold), #b8860b); }
+.place-2 .place-medal { background: linear-gradient(145deg, var(--silver), #a8a8a8); }
+.place-3 .place-medal { background: linear-gradient(145deg, var(--bronze), #8b5a2b); }
+
+.place-info {
+    flex: 1;
+    text-align: left;
+}
+
+.place-horse-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.place-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+/* Winnings Display */
+.winnings-display {
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.winnings-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.winnings-item:last-child {
+    border-bottom: none;
+}
+
+.winnings-item.total {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--secondary);
+    border-top: 2px solid rgba(201, 162, 39, 0.3);
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+}
+
+.winnings-item.winner {
+    color: var(--success);
+}
+
+.winnings-item.loser {
+    color: var(--danger);
+}
+
+/* Game Over */
+.game-over-text {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.game-over-stats {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+/* Hidden utility */
+.hidden {
+    display: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+/* Tablet and Desktop Adjustments */
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .header {
+        border-radius: 0 0 12px 12px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .bet-types {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .track {
+        min-height: 280px;
+    }
+
+    .lane {
+        height: 40px;
+    }
+
+    .horse-icon {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 700px;
+    }
+
+    .main-content {
+        padding: 1.5rem 2rem;
+    }
+}
+
+/* Horse Colors */
+.horse-color-1 { background: #e74c3c; }
+.horse-color-2 { background: #3498db; }
+.horse-color-3 { background: #2ecc71; }
+.horse-color-4 { background: #9b59b6; }
+.horse-color-5 { background: #f39c12; }
+.horse-color-6 { background: #1abc9c; }
+.horse-color-7 { background: #e91e63; }
+.horse-color-8 { background: #00bcd4; }
