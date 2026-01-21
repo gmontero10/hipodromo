@@ -414,6 +414,9 @@ async function startRace() {
     elements.addBetBtn.disabled = true;
     elements.clearBetsBtn.disabled = true;
 
+    // Scroll to top to watch the race
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Reset horse positions
     gameState.horses.forEach(horse => {
         horse.position = 20;
