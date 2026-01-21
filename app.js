@@ -41,6 +41,7 @@ const elements = {
     balance: document.getElementById('balance'),
     raceName: document.getElementById('raceName'),
     raceDistance: document.getElementById('raceDistance'),
+    raceSection: document.getElementById('raceSection'),
     lanes: document.getElementById('lanes'),
     raceStatus: document.getElementById('raceStatus'),
     horsesList: document.getElementById('horsesList'),
@@ -413,6 +414,9 @@ async function startRace() {
     elements.startRaceBtn.disabled = true;
     elements.addBetBtn.disabled = true;
     elements.clearBetsBtn.disabled = true;
+
+    // Scroll to track section to watch the race
+    elements.raceSection.scrollIntoView({ behavior: 'smooth' });
 
     // Reset horse positions
     gameState.horses.forEach(horse => {
