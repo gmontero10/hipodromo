@@ -143,7 +143,8 @@ function updateBalance() {
 
 // Render horse cards
 function renderHorses() {
-    elements.horsesList.innerHTML = gameState.horses.map(horse => `
+    const sortedHorses = [...gameState.horses].sort((a, b) => a.id - b.id);
+    elements.horsesList.innerHTML = sortedHorses.map(horse => `
         <div class="horse-card" data-horse-id="${horse.id}">
             <div class="horse-number horse-color-${horse.color}">${horse.id}</div>
             <div class="horse-info">
@@ -160,7 +161,8 @@ function renderHorses() {
 
 // Render track lanes
 function renderTrack() {
-    elements.lanes.innerHTML = gameState.horses.map(horse => `
+    const sortedHorses = [...gameState.horses].sort((a, b) => a.id - b.id);
+    elements.lanes.innerHTML = sortedHorses.map(horse => `
         <div class="lane" data-lane="${horse.id}">
             <span class="lane-number">${horse.id}</span>
             <span class="horse-icon" id="horse-${horse.id}" style="left: ${horse.position}px;">🏇</span>
@@ -170,7 +172,8 @@ function renderTrack() {
 
 // Render horse selection buttons
 function renderHorseButtons() {
-    const buttonsHtml = gameState.horses.map(horse => `
+    const sortedHorses = [...gameState.horses].sort((a, b) => a.id - b.id);
+    const buttonsHtml = sortedHorses.map(horse => `
         <button class="horse-select-btn horse-color-${horse.color}" data-horse-id="${horse.id}">
             ${horse.id}
         </button>
