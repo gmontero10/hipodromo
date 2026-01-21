@@ -123,8 +123,8 @@ function generateHorses() {
         horse.oddsDisplay = formatOdds(horse.odds);
     });
 
-    // Sort by odds (favorite first)
-    horses.sort((a, b) => a.odds - b.odds);
+    // Sort by horse number
+    horses.sort((a, b) => a.id - b.id);
 
     return horses;
 }
